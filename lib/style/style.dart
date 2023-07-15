@@ -19,8 +19,6 @@ SvgPicture screenBackground({required BuildContext context}){
     fit: BoxFit.cover,
   );
 }
-
-
 InputDecoration appInputDecoration({required String labelTxt}){
   return InputDecoration(
     focusedBorder: const OutlineInputBorder(
@@ -36,5 +34,49 @@ InputDecoration appInputDecoration({required String labelTxt}){
     ),
     border: const OutlineInputBorder(),
     labelText: labelTxt
+  );
+}
+
+DecoratedBox appDropDownStyle(child){
+  return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorWhite,
+        border: Border.all(
+            color: colorWhite,
+            width: 1
+        ),
+        borderRadius: BorderRadius.circular(4)
+      ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 5,right: 5),
+          child: child,
+        ),
+  );
+}
+ButtonStyle appButtonStyle(){
+  return ElevatedButton.styleFrom(
+      elevation: 1,
+      padding: const EdgeInsets.all(0),
+      backgroundColor: Colors.transparent,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))
+  );
+}
+Ink successButton({required String buttonText}){
+  return Ink(
+    decoration: BoxDecoration(
+      color: colorGreen,
+      borderRadius: BorderRadius.circular(6),
+    ),
+    child: Container(
+      height: 45,
+      alignment: Alignment.center,
+      child: Text(
+        buttonText,
+        style: const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 15
+        ),
+      ),
+    ),
   );
 }
