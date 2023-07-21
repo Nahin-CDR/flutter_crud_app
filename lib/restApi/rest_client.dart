@@ -30,3 +30,19 @@ import 'package:http/http.dart' as http;
   }
 
 }
+
+  Future<List>productGridViewListRequest()async{
+    var url = Uri.parse("https://crud.teamrabbil.com/api/v1/ReadProduct");
+    var postHeader = {"Content-Type" : "application/json"};
+    var response = await http.get(url,headers: postHeader);
+    var resultCode = response.statusCode;
+    var resultBody = jsonDecode(response.body);
+
+    if(resultCode == 200 && resultBody['status'] == "success"){
+      Utility.showToast(message: "Success", backGroundColor:Colors.green);
+      return resultBody['data'];
+    }else{
+      Utility.showToast(message: "Failed", backGroundColor:Colors.deepOrange);
+      return [];
+    }
+  }

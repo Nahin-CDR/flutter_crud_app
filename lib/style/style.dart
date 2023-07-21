@@ -80,3 +80,11 @@ Ink successButton({required String buttonText}){
     ),
   );
 }
+
+SliverGridDelegateWithFixedCrossAxisCount productGridViewStyle(){
+  return const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      mainAxisSpacing: 2,
+      mainAxisExtent: 250
+  );
+}
