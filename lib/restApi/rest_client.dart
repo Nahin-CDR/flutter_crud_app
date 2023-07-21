@@ -46,3 +46,20 @@ import 'package:http/http.dart' as http;
       return [];
     }
   }
+
+  Future<bool>productDeleteRequest({required String id})async{
+    var url = Uri.parse("https://crud.teamrabbil.com/api/v1/DeleteProduct/$id");
+    var postHeader = {"Content-Type" : "application/json"};
+    var response = await http.get(url,headers: postHeader);
+    var resultCode = response.statusCode;
+    var resultBody = jsonDecode(response.body);
+
+    if(resultCode == 200 && resultBody['status'] == "success"){
+      Utility.showToast(message: "deleted", backGroundColor:Colors.green);
+
+    }else{
+      Utility.showToast(message: "Failed", backGroundColor:Colors.deepOrange);
+    }
+
+    return false;
+  }
