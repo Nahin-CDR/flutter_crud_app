@@ -63,3 +63,30 @@ import 'package:http/http.dart' as http;
 
     return false;
   }
+
+  Future<bool> productUpdateRequest({required Map formValues,required String id})async{
+  var url = Uri.parse("https://crud.teamrabbil.com/api/v1/UpdateProduct/$id");
+  var postBody = json.encode(formValues);
+  var postHeader = {"Content-Type" : "application/json"};
+
+  var response = await http.post(url,headers: postHeader,body: postBody);
+  var resultCode = response.statusCode;
+  var resultBody = jsonDecode(response.body);
+  if(resultCode == 200 && resultBody['status'] == "success"){
+    Utility.showToast(
+        message: "request success",
+        backGroundColor: Colors.green
+    );
+    if (kDebugMode) {
+      print(resultBody['data']);
+    }
+    return true;
+  }else{
+    Utility.showToast(
+        message: "request failed",
+        backGroundColor: Colors.red
+    );
+    return false;
+  }
+
+}

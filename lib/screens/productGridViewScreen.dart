@@ -1,4 +1,6 @@
 import 'package:crud_app/restApi/rest_client.dart';
+import 'package:crud_app/screens/productCreateScreen.dart';
+import 'package:crud_app/screens/productUpdateScreen.dart';
 import 'package:crud_app/style/style.dart';
 import 'package:crud_app/utility/utility.dart';
 import 'package:flutter/cupertino.dart';
@@ -62,7 +64,10 @@ class _ProductGridViewScreenState extends State<ProductGridViewScreen> {
     super.initState();
   }
 
-
+  goToUpdate(context,productItem){
+    Navigator.push(context,
+        MaterialPageRoute(builder: (BuildContext context)=>ProductUpdateScreen(productItem: productItem)));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +114,9 @@ class _ProductGridViewScreenState extends State<ProductGridViewScreen> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     OutlinedButton(
-                                        onPressed:(){} ,
+                                        onPressed:(){
+                                          goToUpdate(context,productList[index]);
+                                        } ,
                                         child: const Icon(
                                             CupertinoIcons.ellipsis_vertical_circle,
                                             size: 18
@@ -139,6 +146,12 @@ class _ProductGridViewScreenState extends State<ProductGridViewScreen> {
             ),
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>const ProductCreateScreen()));
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
