@@ -1,3 +1,4 @@
+import 'package:crud_app/screens/productGridViewScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../restApi/rest_client.dart';
@@ -63,13 +64,11 @@ class _ProductUpdateScreenState extends State<ProductUpdateScreen> {
       );
     }else{
       // data post
-      setState(() {
-        loading = true;
-      });
+
       await productUpdateRequest(formValues:formValues,id: widget.productItem['_id']);
-      setState(() {
-        loading = false;
-      });
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+          builder: (BuildContext context)=>ProductGridViewScreen()),
+              (route) => false);
     }
   }
   @override
